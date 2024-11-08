@@ -1,164 +1,58 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imker Locaties in Nederland</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        /* Basis styling */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f7f7f7;
-            margin: 0;
-            color: #333;
-            background-image: url('https://www.transparenttextures.com/patterns/hexellence.png'); /* Honingraat patroon */
-            background-size: 200px;
-        }
-
-        /* Logo en header styling */
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background-color: #f5e6c8;
-            border-bottom: 3px solid #ffaa00;
-        }
-
-        .header img {
-            height: 100px;
-            margin-right: 15px;
-        }
-
-        h1 {
-            color: #ffaa00;
-            text-align: center;
-            font-weight: 600;
-            font-size: 2.2em;
-        }
-
-        /* Introductie paragraaf styling */
-        .intro {
-            max-width: 700px;
-            margin: 20px auto;
-            padding: 15px;
-            font-size: 1em;
-            line-height: 1.8;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.9);
-            border: 1px solid #ffaa00;
-            border-radius: 10px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            color: #555;
-        }
-
-        /* Kaart container styling */
-        #map {
-            height: 70vh;
-            width: 90%;
-            margin: 20px auto;
-            border-radius: 15px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Markeer info-venster stijl */
-        .info-window {
-            color: #333;
-            background-color: rgba(255, 255, 255, 0.95);
-            border: 1px solid #ffaa00;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            max-width: 220px;
-        }
-    </style>
-</head>
-<body>
-
-<!-- Header met logo en titel -->
-<div class="header">
-    <img src="logo.png" alt="Paul's Honey Logo">
-    <h1>Ontdek Imkers in Nederland</h1>
-</div>
-
-<!-- Introductie paragraaf -->
-<p class="intro">
-    Welkom op de Imkerkaart van Nederland! Deze website deelt de verhalen van imkers uit verschillende regio's van Nederland. Door op de kaart een locatie te selecteren, ontdek je meer over de imker, zijn passie voor bijen, en hun cruciale rol in ons ecosysteem. Veel plezier met het verkennen van deze wonderlijke wereld van bijen!
-</p>
-
-<!-- Kaart sectie -->
-<div id="map"></div>
-
-<script>
-    // Locaties van imker Paul
-    const locations = [
-        {
-            lat: 51.7312,
-            lng: 5.3186,
-            title: "Dierenwij Maaspoort Den Bosch",
-            story: "Imker Paul is het hele jaar druk bezig met zijn bijen zelf als ze in de winterslaap zijn. De meest voorkomende bloemen in deze omgeving zijn wijde bloemen wat zorgt voor een donkere honing."
-        },
-        {
-            lat: 51.6632,
-            lng: 5.3768,
-            title: "Heidense Hoeve",
-            story: "Imker Paul is het hele jaar druk bezig met zijn bijen zelf als ze in de winterslaap zijn. De meest voorkomende bloemen in deze omgeving zijn wijde bloemen wat zorgt voor een donkere honing."
-        },
-        {
-            lat: 51.7085,
-            lng: 5.3489,
-            title: "Beestenboel Rosmalen",
-            story: "Imker Paul is het hele jaar druk bezig met zijn bijen zelf als ze in de winterslaap zijn. De meest voorkomende bloemen in deze omgeving zijn wijde bloemen wat zorgt voor een donkere honing."
-        }
-    ];
-
-    // Initieer de kaart, gericht op Noord-Brabant
-    function initMap() {
-        const mapOptions = {
-            zoom: 10,
-            center: { lat: 51.6559, lng: 5.3037 }, // Focus op Noord-Brabant, Nederland
-        };
-        
-        const map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        
-        // Voeg markers en cirkels toe
-        locations.forEach((location) => {
-            const marker = new google.maps.Marker({
-                position: { lat: location.lat, lng: location.lng },
-                map: map,
-                title: location.title,
-                icon: {
-                    url: "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" // Gele markering voor bijenstijl
-                }
-            });
-
-            // Cirkel toevoegen rondom de locatie
-            const circle = new google.maps.Circle({
-                strokeColor: "#FFDD00",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: "#FFEE88",
-                fillOpacity: 0.35,
-                map: map,
-                center: { lat: location.lat, lng: location.lng },
-                radius: 3000 // Radius van 3 kilometer
-            });
-
-            // Info window voor het verhaal van de imker
-            const infoWindow = new google.maps.InfoWindow({
-                content: `<div class="info-window"><h3>${location.title}</h3><p>${location.story}</p></div>`
-            });
-
-            marker.addListener("click", () => {
-                infoWindow.open(map, marker);
-            });
-        });
+const locations = [
+    {
+        lat: 51.7312,
+        lng: 5.3186,
+        title: "Dierenwij Maaspoort Den Bosch",
+        story: "Imker Paul is het hele jaar druk bezig met zijn bijen zelf als ze in de winterslaap zijn. De meest voorkomende bloemen in deze omgeving zijn wijde bloemen wat zorgt voor een donkere honing.",
+        url: "dierenwij-maaspoort.html"  // Link naar de specifieke pagina
+    },
+    {
+        lat: 51.6632,
+        lng: 5.3768,
+        title: "Heidense Hoeve",
+        story: "Imker Paul is het hele jaar druk bezig met zijn bijen zelf als ze in de winterslaap zijn. De meest voorkomende bloemen in deze omgeving zijn wijde bloemen wat zorgt voor een donkere honing.",
+        url: "heidense-hoeve.html"  // Link naar de specifieke pagina
+    },
+    {
+        lat: 51.7085,
+        lng: 5.3489,
+        title: "Beestenboel Rosmalen",
+        story: "Imker Paul is het hele jaar druk bezig met zijn bijen zelf als ze in de winterslaap zijn. De meest voorkomende bloemen in deze omgeving zijn wijde bloemen wat zorgt voor een donkere honing.",
+        url: "beestenboel-rosmalen.html"  // Link naar de specifieke pagina
     }
-</script>
+];
 
-<!-- Google Maps API toevoegen -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+// Initieer de kaart
+function initMap() {
+    const mapOptions = {
+        zoom: 10,
+        center: { lat: 51.6559, lng: 5.3037 },
+    };
+    
+    const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    
+    locations.forEach((location) => {
+        const marker = new google.maps.Marker({
+            position: { lat: location.lat, lng: location.lng },
+            map: map,
+            title: location.title,
+            icon: {
+                url: "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+            }
+        });
 
-</body>
-</html>
+        // Pas de infoWindow aan om een link naar de pagina te bevatten
+        const infoWindow = new google.maps.InfoWindow({
+            content: `<div class="info-window">
+                        <h3>${location.title}</h3>
+                        <p>${location.story}</p>
+                        <a href="${location.url}" style="color: #ffaa00; text-decoration: none; font-weight: bold;">Lees meer →</a>
+                      </div>`
+        });
+
+        marker.addListener("click", () => {
+            infoWindow.open(map, marker);
+        });
+    });
+}
+
